@@ -5,7 +5,11 @@ S1 = servo(12)
 S2 = servo(16)
 
 sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-sock.bind(("192.168.1.41",35351))
+try :
+    sock.bind(("192.168.1.33",35351))
+except :
+    sock.close()
+    sock.bind(("192.168.1.33",35351))
 print("Serveur d'écoute sur le port : ",35351)
 sock.listen(5)
 print("attente connexion")
