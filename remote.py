@@ -103,14 +103,11 @@ class Thread_remote(Thread):
 
 
 
-import socket
-import RPi.GPIO as GPIO
-import time
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(18,GPIO.OUT)
-GPIO.setup(23,GPIO.OUT)
 
+import time
+
+from servo import *
+import socket
 
 
 
@@ -131,8 +128,7 @@ class Thread_serveur(Thread):
         GPIO.output(23,GPIO.LOW)
 
     def run(self):
-        from servo import *
-        import socket
+
 
         S1 = servo(12)
         S2 = servo(16)
