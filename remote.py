@@ -131,38 +131,38 @@ class Thread_serveur(Thread):
         GPIO.output(23,GPIO.LOW)
 
     def run(self):
+        from servo import *
+        import socket
+
+        S1 = servo(12)
+        S2 = servo(16)
+
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        sock.bind(("192.168.1.50",35350))
-        print("Serveur d'écoute sur le port : ",35350)
+        try :
+            sock.bind(("192.168.1.62",35351))
+        except :
+            sock.close()
+            sock.bind(("192.168.1.62",35351))
+        print("Serveur d'écoute sur le port : ",35351)
         sock.listen(5)
         print("attente connexion")
         connexion,adresse=sock.accept()
-        print("client conneté ip : ",adresse[0]," port : ",adresse[1])
-
-        print("serveur")
-
-        etat = False
-
-
+        print("client conneté ip : %s, port : %s",adresse[0],adresse[1])
         while 1 :
-            msg = None
             msg = connexion.recv(1024)
             msg = msg.decode()
-
-
-            if msg == "0":
+            if msg == 'q':
                 connexion.close()
                 sock.close()
                 break
-            if msg == "1":
-                if etat :
-                    print("eteindre")
-                    self.Eteindre()
-                    etat = False
-                else :
-                    print("allume")
-                    self.Allumer()
-                    etat = True
+            if msg == 'up':
+                S1.set_angle(1)
+            if msg == 'down':
+                S1.set_angle(-1)
+            if msg == 'right':
+                S2.set_angle(1)
+            if msg == 'left':
+                S2.set_angle(-1)
 
 
 
