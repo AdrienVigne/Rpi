@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
                           # Can use GPIO.setmode(GPIO.BCM) instead to use
                           # Broadcom SOC channel names.
 
-GPIO.setup(12, GPIO.OUT)  # Set GPIO pin 12 to output mode.
+GPIO.setup(18, GPIO.OUT)  # Set GPIO pin 12 to output mode.
 pwm = GPIO.PWM(12, 50)   # Initialize PWM on pwmPin 100Hz frequency
 GPIO.setup(16,GPIO.OUT)
 pwm2 = GPIO.PWM(16,50)

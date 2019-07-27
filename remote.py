@@ -132,7 +132,7 @@ class Thread_serveur(Thread):
 
         S1 = servo(12)
         S2 = servo(16)
-
+        print("serveur")
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         try :
             sock.bind(("192.168.1.62",35351))
