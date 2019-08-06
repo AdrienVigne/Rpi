@@ -119,18 +119,10 @@ class Thread_serveur(Thread):
     def __init__(self):
         super(Thread_serveur, self).__init__()
 
-    def Allumer(self):
-        GPIO.output(18,GPIO.HIGH)
-        GPIO.output(23,GPIO.HIGH)
-
-    def Eteindre(self):
-        GPIO.output(18,GPIO.LOW)
-        GPIO.output(23,GPIO.LOW)
-
     def run(self):
 
 
-        S1 = servo(12)
+        S1 = servo(18)
         S2 = servo(16)
         print("serveur")
         sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
